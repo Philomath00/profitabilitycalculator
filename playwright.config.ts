@@ -21,8 +21,12 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        // Environment pins a pre-installed Chromium revision; see AGENTS/environment notes.
-        launchOptions: { executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" },
+        // Some sandboxed dev environments pin a pre-installed Chromium at a fixed path
+        // instead of the one `playwright install` would fetch. CI and normal local dev
+        // don't set this, so Playwright resolves its own managed browser as usual.
+        launchOptions: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE
+          ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE }
+          : {},
       },
     },
   ],

@@ -1,5 +1,7 @@
 # Profitability Calculator
 
+[![CI](https://github.com/Philomath00/profitabilitycalculator/actions/workflows/ci.yml/badge.svg)](https://github.com/Philomath00/profitabilitycalculator/actions/workflows/ci.yml)
+
 A tool that helps startup founders model their unit economics, calculate their break-even
 point, and generate clear, trustworthy financial projections they can show investors.
 
