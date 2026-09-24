@@ -26,6 +26,8 @@ Correctness and Investor Trust.)
 - Q: Should profit, gross margin, and break-even be calculated on a pre-tax/operating basis
   only, or does the model need to account for estimated taxes? → A: Pre-tax/operating basis
   only; taxes are explicitly out of scope for this feature.
+- Q: After a founder changes an assumption, how quickly must the projection, break-even result,
+  and charts update? → A: ≤ 1 second.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -352,7 +354,7 @@ requirements matches the direction and relative magnitude implied by the underly
   guaranteed or factual future performance.
 - **FR-034**: Every calculated result presented anywhere in the product MUST be traceable back
   to the specific assumptions and formula that produced it, and changing an assumption MUST
-  automatically recalculate every output that depends on it.
+  automatically recalculate every output that depends on it within 1 second (see SC-005).
 
 ### Functional Requirements — Input Validation
 
@@ -445,8 +447,8 @@ requirements matches the direction and relative magnitude implied by the underly
 - **SC-004**: A founder can create three scenarios (Conservative, Base Case, Optimistic) and
   identify which one reaches break-even soonest without performing any calculation themselves.
 - **SC-005**: Changing any single assumption updates every dependent output (projection,
-  break-even result, charts, investor summary) without the founder taking any action beyond
-  confirming the change.
+  break-even result, charts, investor summary) within 1 second, without the founder taking any
+  action beyond confirming the change.
 - **SC-006**: A reader unfamiliar with the product can, from the investor summary alone,
   correctly classify a given statement as a fact, an assumption, a calculated result, or a
   projection, verified via usability review.

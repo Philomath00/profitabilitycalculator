@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -32,5 +32,6 @@
 ## Notes
 
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`
-- 3 `[NEEDS CLARIFICATION]` markers remain (FR-045, FR-046, FR-047), presented to the user for
-  resolution. All other items pass. Re-run this checklist after the markers are resolved.
+- All 17 items pass as of the 2026-09-24 `/speckit-clarify` session. The 3 `[NEEDS
+  CLARIFICATION]` markers (FR-045 accounts/persistence, FR-046 investor sharing, FR-047 tax
+  treatment) were resolved and integrated into the spec; see `## Clarifications` in spec.md.
