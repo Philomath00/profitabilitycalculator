@@ -4,6 +4,7 @@ import type {
   MonthlyProjectionRow,
   Scenario,
 } from "../domain/types";
+import { deriveFinancialRisks } from "./financialRisks";
 
 export type InvestorSummaryCategory = "fact" | "assumption" | "calculated_result" | "projection";
 
@@ -91,6 +92,19 @@ export function buildInvestorSummaryContent(
         : "Cash never depleted within the projection",
       category: "calculated_result",
     },
+    {
+      label: "Capital requirement",
+      value: (() => {
+        const trough = projection.reduce(
+          (min, r) => (r.cashBalance < min.cashBalance ? r : min),
+          projection[0],
+        );
+        return trough && trough.cashBalance < 0
+          ? `${formatter.format(-trough.cashBalance)} — the deepest cash deficit projected, at month ${trough.month}`
+          : "None — cash is not projected to go negative within this scenario";
+      })(),
+      category: "calculated_result",
+    },
 
     {
       label: "Projected revenue trajectory (final projected month)",
@@ -102,6 +116,12 @@ export function buildInvestorSummaryContent(
       value: formatter.format(lastRow?.operatingProfitLoss ?? 0),
       category: "projection",
     },
+
+    ...deriveFinancialRisks(scenario, projection, breakEven).map((risk) => ({
+      label: "Financial risk",
+      value: risk,
+      category: "calculated_result" as const,
+    })),
   ];
 
   return {

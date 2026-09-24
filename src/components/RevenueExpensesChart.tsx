@@ -35,7 +35,7 @@ export function RevenueExpensesChart({
     <figure aria-label="Revenue versus expenses over time">
       <figcaption>Revenue vs. Expenses</figcaption>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={rows} margin={{ top: 10, right: 20, left: 10, bottom: 10 }}>
+        <LineChart data={rows} margin={{ top: 28, right: 20, left: 10, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" label={{ value: "Month", position: "insideBottom", offset: -5 }} />
           <YAxis tickFormatter={(v: number) => formatter.format(v)} width={90} />

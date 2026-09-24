@@ -1,6 +1,8 @@
 import { useAppState } from "../state/AppStateContext";
 import { useProjection } from "../state/useProjection";
+import { computeAnnualSummary } from "../domain/annualSummary";
 import { ProjectionTable } from "../components/ProjectionTable";
+import { AnnualSummaryTable } from "../components/AnnualSummaryTable";
 
 export function ProjectionStep() {
   const { state } = useAppState();
@@ -15,10 +17,14 @@ export function ProjectionStep() {
     );
   }
 
+  const currency = state.businessProfile.currency;
+  const years = computeAnnualSummary(rows);
+
   return (
     <section aria-labelledby="projection-heading">
       <h2 id="projection-heading">Projection</h2>
-      <ProjectionTable rows={rows} currency={state.businessProfile.currency} />
+      <ProjectionTable rows={rows} currency={currency} />
+      <AnnualSummaryTable years={years} currency={currency} />
     </section>
   );
 }

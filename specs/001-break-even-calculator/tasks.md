@@ -293,32 +293,32 @@ underlying formulas.
 
 ## Phase 9: Convergence
 
-- [ ] T058 Add capital/funding requirement as an explicit line in the Investor Summary
+- [x] T058 Add capital/funding requirement as an explicit line in the Investor Summary
       (`src/export/investorSummaryContent.ts`) per FR-032, US4/AC1 (missing)
-- [ ] T059 Add a "major financial risks" section to the Investor Summary
+- [x] T059 Add a "major financial risks" section to the Investor Summary
       (`src/export/investorSummaryContent.ts`) per FR-032, US4/AC1 (missing)
-- [ ] T060 Add an annual summary view, derived from the monthly projection rows (never
+- [x] T060 Add an annual summary view, derived from the monthly projection rows (never
       computed independently, per FR-022), to the Projection or Dashboard step per FR-022
       (missing)
-- [ ] T061 Add "Expenses" and "Profitability" columns to the scenario comparison table in
+- [x] T061 Add "Expenses" and "Profitability" columns to the scenario comparison table in
       `src/components/ScenarioComparison.tsx` per FR-024 (partial)
-- [ ] T062 Fix `src/components/ScenarioComparison.tsx` so no two scenario lines share an
+- [x] T062 Fix `src/components/ScenarioComparison.tsx` so no two scenario lines share an
       identical stroke pattern when 3 or more scenarios are compared (currently alternates
       only 2 patterns via `index % 2`, so scenario 0 and scenario 2 render identically
       except for color) per FR-031 (contradicts)
-- [ ] T063 Add a numerical/tabular fallback for the scenario comparison overlay chart in
+- [x] T063 Add a numerical/tabular fallback for the scenario comparison overlay chart in
       `src/components/ScenarioComparison.tsx`, matching the pattern used by
       RevenueExpensesChart/ProfitabilityChart/CashRunwayChart, per FR-042 (partial)
-- [ ] T064 Reconcile the guided-flow step sequence in `src/pages/steps.ts` with FR-043: either
+- [x] T064 Reconcile the guided-flow step sequence in `src/pages/steps.ts` with FR-043: either
       add a standalone "Growth Assumptions" step distinct from Revenue, or update FR-043's
       named step sequence in spec.md to match the shipped flow (business/revenue/expenses/
       funding/projection/breakEven/dashboard/scenarios/sensitivity/investorSummary) — flag
       for founder decision before implementing per FR-043 (partial)
-- [ ] T065 Add an automated accessibility check (e.g. axe-core or Playwright's accessibility
+- [x] T065 Add an automated accessibility check (e.g. axe-core or Playwright's accessibility
       snapshot) across the guided-flow steps and fix any violations found, to substantiate
       FR-041/constitution Principle XV compliance beyond manual construction per FR-041
       (partial)
-- [ ] T066 Fix the break-even `ReferenceLine` label in
+- [x] T066 Fix the break-even `ReferenceLine` label in
       `src/components/RevenueExpensesChart.tsx` overlapping the chart's `<figcaption>` (visible
       in a live end-to-end run's dashboard screenshot — the "Break-even: month N" label renders
       on top of the "Revenue vs. Expenses" caption text above it) per FR-030 (partial)

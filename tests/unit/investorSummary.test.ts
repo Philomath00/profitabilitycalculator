@@ -28,6 +28,36 @@ describe("buildInvestorSummaryContent", () => {
     expect(content.disclaimer).toMatch(/not.*advice/i);
   });
 
+  it("includes a Capital requirement line (FR-032/US4 AC1)", () => {
+    const capitalLine = content.lines.find((l) => l.label === "Capital requirement");
+    expect(capitalLine).toBeDefined();
+    // canonical case never goes cash-negative, so no capital is required
+    expect(capitalLine?.value).toMatch(/none/i);
+  });
+
+  it("reports a nonzero capital requirement when cash goes negative", () => {
+    const tightProfile = canonicalBusinessProfile({
+      projectionPeriodMonths: 24,
+      startingCash: 50_000,
+    });
+    const tightRows = computeMonthlyProjection(tightProfile, scenario);
+    const tightBreakEven = computeBreakEven(tightRows, scenario);
+    const tightContent = buildInvestorSummaryContent(
+      tightProfile,
+      scenario,
+      tightRows,
+      tightBreakEven,
+    );
+    const capitalLine = tightContent.lines.find((l) => l.label === "Capital requirement");
+    expect(capitalLine?.value).toMatch(/\$22,500\.60/);
+  });
+
+  it("includes at least one Financial risk line (FR-032/US4 AC1)", () => {
+    const riskLines = content.lines.filter((l) => l.label === "Financial risk");
+    expect(riskLines.length).toBeGreaterThan(0);
+    expect(riskLines.every((l) => l.category === "calculated_result")).toBe(true);
+  });
+
   it("never-reached break-even is stated explicitly, not a fabricated month", () => {
     const flatScenario = canonicalScenario({
       revenueStreams: [

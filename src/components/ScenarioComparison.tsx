@@ -14,6 +14,10 @@ import { computeDashboardMetrics } from "../domain/dashboardMetrics";
 import type { BusinessProfile, Scenario } from "../domain/types";
 
 const LINE_COLORS = ["#1b5e20", "#0d47a1", "#8b0000", "#6a1b9a", "#e65100"];
+// One dash pattern per color (undefined = solid) so every scenario line is distinguishable
+// by shape alone, not just color (FR-031) — previously only 2 patterns cycled, so scenario 0
+// and scenario 2 rendered as identical solid lines.
+const DASH_PATTERNS = [undefined, "6 4", "2 2", "8 3 2 3", "1 4"];
 
 function formatMonth(month: number | null): string {
   return month !== null ? `Month ${month}` : "Not reached";
@@ -66,6 +70,8 @@ export function ScenarioComparison({
             <th scope="col">Scenario</th>
             <th scope="col">Key assumption (growth rate)</th>
             <th scope="col">Final-month revenue</th>
+            <th scope="col">Final-month expenses</th>
+            <th scope="col">Final-month profit/loss</th>
             <th scope="col">Operating break-even</th>
             <th scope="col">Cumulative break-even</th>
             <th scope="col">Runway</th>
@@ -73,25 +79,30 @@ export function ScenarioComparison({
           </tr>
         </thead>
         <tbody>
-          {computed.map(({ scenario, metrics }) => (
-            <tr key={scenario.id}>
-              <th scope="row">{scenario.name}</th>
-              <td>
-                {scenario.revenueStreams
-                  .map((s) => `${s.name || "Revenue"}: ${s.growthRatePercentPerMonth}%/mo`)
-                  .join(", ") || "No revenue streams"}
-              </td>
-              <td>{formatter.format(metrics.latestRevenue)}</td>
-              <td>{formatMonth(metrics.operatingBreakEvenMonth)}</td>
-              <td>{formatMonth(metrics.cumulativeBreakEvenMonth)}</td>
-              <td>
-                {metrics.runwayMonths !== null
-                  ? `Depleted month ${metrics.runwayMonths}`
-                  : "Never depleted"}
-              </td>
-              <td>{formatter.format(metrics.fundingRequirement)}</td>
-            </tr>
-          ))}
+          {computed.map(({ scenario, rows, metrics }) => {
+            const lastRow = rows[rows.length - 1];
+            return (
+              <tr key={scenario.id}>
+                <th scope="row">{scenario.name}</th>
+                <td>
+                  {scenario.revenueStreams
+                    .map((s) => `${s.name || "Revenue"}: ${s.growthRatePercentPerMonth}%/mo`)
+                    .join(", ") || "No revenue streams"}
+                </td>
+                <td>{formatter.format(metrics.latestRevenue)}</td>
+                <td>{formatter.format(lastRow?.totalOperatingExpenses ?? 0)}</td>
+                <td>{formatter.format(lastRow?.operatingProfitLoss ?? 0)}</td>
+                <td>{formatMonth(metrics.operatingBreakEvenMonth)}</td>
+                <td>{formatMonth(metrics.cumulativeBreakEvenMonth)}</td>
+                <td>
+                  {metrics.runwayMonths !== null
+                    ? `Depleted month ${metrics.runwayMonths}`
+                    : "Never depleted"}
+                </td>
+                <td>{formatter.format(metrics.fundingRequirement)}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 
@@ -116,13 +127,39 @@ export function ScenarioComparison({
                 type="monotone"
                 dataKey={scenario.name}
                 stroke={LINE_COLORS[index % LINE_COLORS.length]}
-                strokeDasharray={index % 2 === 1 ? "6 4" : undefined}
+                strokeDasharray={DASH_PATTERNS[index % DASH_PATTERNS.length]}
                 strokeWidth={2}
                 dot={false}
               />
             ))}
           </LineChart>
         </ResponsiveContainer>
+        <details>
+          <summary>View as table</summary>
+          <table>
+            <caption>Cumulative profit/loss by scenario, by month</caption>
+            <thead>
+              <tr>
+                <th scope="col">Month</th>
+                {computed.map(({ scenario }) => (
+                  <th scope="col" key={scenario.id}>
+                    {scenario.name}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {chartData.map((point) => (
+                <tr key={point.month}>
+                  <th scope="row">{point.month}</th>
+                  {computed.map(({ scenario }) => (
+                    <td key={scenario.id}>{formatter.format(point[scenario.name] ?? 0)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
       </figure>
     </div>
   );

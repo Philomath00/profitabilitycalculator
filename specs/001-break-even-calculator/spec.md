@@ -28,6 +28,13 @@ Correctness and Investor Trust.)
   only; taxes are explicitly out of scope for this feature.
 - Q: After a founder changes an assumption, how quickly must the projection, break-even result,
   and charts update? → A: ≤ 1 second.
+- Q: Convergence audit (T064) found the implemented guided flow has no standalone "Growth
+  Assumptions" step as FR-043 originally named — growth rate/churn are captured within the
+  Revenue step instead, and Dashboard/Sensitivity exist as their own steps that FR-043 didn't
+  name. Should the flow be restructured to add that step, or should FR-043 be amended to match
+  the shipped flow? → A: Amend FR-043. Growth rate and churn only ever apply alongside the
+  revenue stream they modify; splitting them into a separate step would fragment the form
+  without adding capability.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -399,8 +406,12 @@ requirements matches the direction and relative magnitude implied by the underly
 - **FR-042**: Every chart MUST have a numerical/tabular alternative available, so financial
   meaning is not communicated through visualization alone.
 - **FR-043**: System MUST present a guided, step-based flow (business → revenue → expenses →
-  funding → growth assumptions → projection → break-even → scenarios → investor view) and MUST
-  allow the founder to return to any prior step, change values, and see the model update.
+  funding → projection → break-even → dashboard → scenarios → sensitivity → investor view) and
+  MUST allow the founder to return to any prior step, change values, and see the model update.
+  Growth rate and churn are captured as part of each revenue stream within the Revenue step,
+  not as a separate step — they only ever apply alongside the revenue stream they modify, so a
+  dedicated step would split a field from the input it belongs to without adding capability
+  (amended 2026-09-24, see Clarifications).
 - **FR-044**: System MUST provide plain-language explanations of financial terminology (e.g.
   gross margin, burn rate, runway, contribution margin, break-even, operating profit) accessible
   to founders without a financial modeling background, while still allowing advanced users to
