@@ -220,23 +220,23 @@ calculated results, and projections are each distinguishable.
 
 ### Tests for User Story 4 ⚠️ Write first; confirm they FAIL before implementing T044–T046
 
-- [ ] T042 [P] [US4] Unit test: `generateInvestorSummaryDocument()` output content is tagged
+- [x] T042 [P] [US4] Unit test: `generateInvestorSummaryDocument()` output content is tagged
       fact/assumption/calculated_result/projection per data-model.md's InvestorSummary
       section and contracts/investor-summary-export.md, in
       `tests/unit/investorSummary.test.ts`
-- [ ] T043 [US4] Playwright E2E test: generate and download the Investor Summary with no
+- [x] T043 [US4] Playwright E2E test: generate and download the Investor Summary with no
       network requests observed, and confirm the disclaimer text is present, in
       `tests/e2e/investorSummary.spec.ts`
 
 ### Implementation for User Story 4
 
-- [ ] T044 [US4] Implement `generateInvestorSummaryDocument()` client-side PDF generation in
+- [x] T044 [US4] Implement `generateInvestorSummaryDocument()` client-side PDF generation in
       `src/export/investorSummaryPdf.ts` per contracts/investor-summary-export.md (no
       network call; figures equal the on-screen dashboard exactly) (depends on T016, T017)
-- [ ] T045 [P] [US4] Build the Investor Summary preview page in
+- [x] T045 [P] [US4] Build the Investor Summary preview page in
       `src/pages/InvestorSummaryStep.tsx` with fact/assumption/result/projection sections and
       the disclaimer per FR-032–033
-- [ ] T046 [US4] Wire the "Download" action to `generateInvestorSummaryDocument()` per
+- [x] T046 [US4] Wire the "Download" action to `generateInvestorSummaryDocument()` per
       FR-046 (depends on T044, T045)
 
 **Checkpoint**: User Stories 1–4 all independently functional.
