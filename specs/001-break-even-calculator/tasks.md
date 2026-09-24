@@ -254,18 +254,18 @@ underlying formulas.
 
 ### Tests for User Story 5 ⚠️ Write first; confirm they FAIL before implementing T049–T050
 
-- [ ] T047 [P] [US5] Unit test: `computeSensitivity()` results equal repeated
+- [x] T047 [P] [US5] Unit test: `computeSensitivity()` results equal repeated
       `computeMonthlyProjection()`/`computeBreakEven()` calls on modified scenario copies
       (never an independent formula) in `tests/unit/sensitivity.test.ts`
-- [ ] T048 [US5] Playwright E2E test: vary price and confirm the effect on break-even
+- [x] T048 [US5] Playwright E2E test: vary price and confirm the effect on break-even
       month/runway is presented as a calculated effect, not an editable independent input,
       in `tests/e2e/sensitivity.spec.ts`
 
 ### Implementation for User Story 5
 
-- [ ] T049 [US5] Implement `computeSensitivity()` in `src/domain/sensitivity.ts` per
+- [x] T049 [US5] Implement `computeSensitivity()` in `src/domain/sensitivity.ts` per
       contracts/calculation-engine.md (depends on T016, T017)
-- [ ] T050 [US5] Build the Sensitivity Analysis UI in `src/pages/SensitivityStep.tsx` (select
+- [x] T050 [US5] Build the Sensitivity Analysis UI in `src/pages/SensitivityStep.tsx` (select
       assumption, specify candidate values, show effect on break-even/profitability/runway/
       cash) per FR-025 (depends on T049)
 
