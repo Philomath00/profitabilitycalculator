@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test("founder generates and downloads the investor summary with no network requests", async ({ page }) => {
+test("founder generates and downloads the investor summary with no network requests", async ({
+  page,
+}) => {
   await page.goto("/");
 
   await page.getByLabel("Business / startup name").fill("Investor Test Co");
@@ -14,7 +16,11 @@ test("founder generates and downloads the investor summary with no network reque
   await page.getByRole("button", { name: "Next" }).click();
 
   await page.getByRole("button", { name: "Add cost item" }).click();
-  await page.locator("fieldset").filter({ hasText: "Cost item 1" }).getByLabel("Amount (currency)").fill("20000");
+  await page
+    .locator("fieldset")
+    .filter({ hasText: "Cost item 1" })
+    .getByLabel("Amount (currency)")
+    .fill("20000");
   await page.getByRole("button", { name: "Add cost item" }).click();
   const variableFieldset = page.locator("fieldset").filter({ hasText: "Cost item 2" });
   await variableFieldset.getByLabel("Category").selectOption("variable");
@@ -33,7 +39,8 @@ test("founder generates and downloads the investor summary with no network reque
   await expect(page.getByRole("note")).toContainText(/not.*advice/i);
 
   const requestsDuringDownload: string[] = [];
-  const listener = (req: import("@playwright/test").Request) => requestsDuringDownload.push(req.url());
+  const listener = (req: import("@playwright/test").Request) =>
+    requestsDuringDownload.push(req.url());
   page.on("request", listener);
 
   const [download] = await Promise.all([

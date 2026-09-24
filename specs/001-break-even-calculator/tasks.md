@@ -275,18 +275,18 @@ underlying formulas.
 
 ## Phase 8: Polish & Cross-Cutting Concerns
 
-- [ ] T051 [P] Accessibility audit (keyboard navigation, focus states, contrast, semantic
+- [x] T051 [P] Accessibility audit (keyboard navigation, focus states, contrast, semantic
       labels) across all guided-flow steps per FR-041, constitution Principle XV
-- [ ] T052 [P] Responsive/mobile layout pass across all pages/components per constitution
+- [x] T052 [P] Responsive/mobile layout pass across all pages/components per constitution
       Principle XVI
-- [ ] T053 [P] Add plain-language explanations/tooltips for gross margin, burn rate, runway,
+- [x] T053 [P] Add plain-language explanations/tooltips for gross margin, burn rate, runway,
       contribution margin, break-even, and operating profit per FR-044
-- [ ] T054 Rounding/precision consistency pass: 2-decimal display, full-precision internal
+- [x] T054 Rounding/precision consistency pass: 2-decimal display, full-precision internal
       calculations per FR-037
-- [ ] T055 [P] Privacy/security pass: confirm no financial figures appear in logs, analytics
+- [x] T055 [P] Privacy/security pass: confirm no financial figures appear in logs, analytics
       events, error messages, or browser console per FR-038–040
-- [ ] T056 [P] README: document how to run, test, and build the app
-- [ ] T057 Run the full quickstart.md validation pass (all reference cases plus the manual
+- [x] T056 [P] README: document how to run, test, and build the app
+- [x] T057 Run the full quickstart.md validation pass (all reference cases plus the manual
       acceptance walkthrough for User Stories 1–5) end-to-end
 
 ---

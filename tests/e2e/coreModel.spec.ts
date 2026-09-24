@@ -5,7 +5,9 @@ import { test, expect } from "@playwright/test";
  * founder completes Business → Revenue → Expenses → Funding with known inputs and sees the
  * correct operating (month 11) and cumulative (month 18) break-even result.
  */
-test("founder builds the canonical model and sees the correct break-even result", async ({ page }) => {
+test("founder builds the canonical model and sees the correct break-even result", async ({
+  page,
+}) => {
   await page.goto("/");
 
   // Business step
@@ -56,7 +58,11 @@ test("shows an explicit message when break-even is never reached", async ({ page
 
   await page.getByRole("button", { name: "Next" }).click();
   await page.getByRole("button", { name: "Add cost item" }).click();
-  await page.locator("fieldset").filter({ hasText: "Cost item 1" }).getByLabel("Amount (currency)").fill("20000");
+  await page
+    .locator("fieldset")
+    .filter({ hasText: "Cost item 1" })
+    .getByLabel("Amount (currency)")
+    .fill("20000");
 
   await page.getByRole("button", { name: "Next" }).click();
   await page.getByRole("button", { name: "Next" }).click();

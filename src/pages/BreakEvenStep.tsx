@@ -1,6 +1,7 @@
 import { useAppState } from "../state/AppStateContext";
 import { useProjection } from "../state/useProjection";
 import { BreakEvenSummary } from "../components/BreakEvenSummary";
+import { Glossary } from "../components/Glossary";
 
 export function BreakEvenStep() {
   const { state } = useAppState();
@@ -10,7 +11,9 @@ export function BreakEvenStep() {
     return (
       <section aria-labelledby="break-even-heading">
         <h2 id="break-even-heading">Break-Even</h2>
-        <p>Complete the Business, Revenue, and Expenses steps first to see your break-even result.</p>
+        <p>
+          Complete the Business, Revenue, and Expenses steps first to see your break-even result.
+        </p>
       </section>
     );
   }
@@ -19,6 +22,7 @@ export function BreakEvenStep() {
     <section aria-labelledby="break-even-heading">
       <h2 id="break-even-heading">Break-Even</h2>
       <BreakEvenSummary result={breakEven} />
+      <Glossary />
     </section>
   );
 }

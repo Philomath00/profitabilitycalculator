@@ -13,14 +13,20 @@ async function buildCanonicalModel(page: import("@playwright/test").Page) {
   await page.getByRole("button", { name: "Next" }).click();
 
   await page.getByRole("button", { name: "Add cost item" }).click();
-  await page.locator("fieldset").filter({ hasText: "Cost item 1" }).getByLabel("Amount (currency)").fill("20000");
+  await page
+    .locator("fieldset")
+    .filter({ hasText: "Cost item 1" })
+    .getByLabel("Amount (currency)")
+    .fill("20000");
   await page.getByRole("button", { name: "Add cost item" }).click();
   const variableFieldset = page.locator("fieldset").filter({ hasText: "Cost item 2" });
   await variableFieldset.getByLabel("Category").selectOption("variable");
   await variableFieldset.getByLabel("Amount (%)").fill("20");
 }
 
-test("dashboard shows correct headline metrics and marks the break-even point", async ({ page }) => {
+test("dashboard shows correct headline metrics and marks the break-even point", async ({
+  page,
+}) => {
   await buildCanonicalModel(page);
 
   await page.getByRole("button", { name: "Next" }).click(); // -> Funding
@@ -28,10 +34,11 @@ test("dashboard shows correct headline metrics and marks the break-even point", 
   await page.getByRole("button", { name: "Next" }).click(); // -> Break-Even
   await page.getByRole("button", { name: "Next" }).click(); // -> Dashboard
 
-  await expect(page.getByText("Operating break-even")).toBeVisible();
-  await expect(page.getByText("Month 11", { exact: true })).toBeVisible();
-  await expect(page.getByText("Cumulative break-even")).toBeVisible();
-  await expect(page.getByText("Month 18", { exact: true })).toBeVisible();
+  const headlineMetrics = page.locator('dl[aria-label="Headline metrics"]');
+  await expect(headlineMetrics.getByText("Operating break-even")).toBeVisible();
+  await expect(headlineMetrics.getByText("Month 11", { exact: true })).toBeVisible();
+  await expect(headlineMetrics.getByText("Cumulative break-even")).toBeVisible();
+  await expect(headlineMetrics.getByText("Month 18", { exact: true })).toBeVisible();
 
   // Break-even is visually marked on the revenue-vs-expenses chart.
   await expect(page.getByText("Break-even: month 11")).toBeVisible();

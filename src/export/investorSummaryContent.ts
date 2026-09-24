@@ -1,4 +1,9 @@
-import type { BreakEvenResult, BusinessProfile, MonthlyProjectionRow, Scenario } from "../domain/types";
+import type {
+  BreakEvenResult,
+  BusinessProfile,
+  MonthlyProjectionRow,
+  Scenario,
+} from "../domain/types";
 
 export type InvestorSummaryCategory = "fact" | "assumption" | "calculated_result" | "projection";
 
@@ -44,7 +49,11 @@ export function buildInvestorSummaryContent(
       category: "fact",
     },
     { label: "Scenario", value: scenario.name, category: "fact" },
-    { label: "Starting cash", value: formatter.format(businessProfile.startingCash), category: "fact" },
+    {
+      label: "Starting cash",
+      value: formatter.format(businessProfile.startingCash),
+      category: "fact",
+    },
 
     ...scenario.revenueStreams.map((s) => ({
       label: `Revenue assumption: ${s.name || "Revenue stream"}`,
@@ -69,9 +78,10 @@ export function buildInvestorSummaryContent(
     },
     {
       label: "Gross margin (final projected month)",
-      value: lastRow?.grossMargin !== null && lastRow?.grossMargin !== undefined
-        ? `${(lastRow.grossMargin * 100).toFixed(1)}%`
-        : "N/A",
+      value:
+        lastRow?.grossMargin !== null && lastRow?.grossMargin !== undefined
+          ? `${(lastRow.grossMargin * 100).toFixed(1)}%`
+          : "N/A",
       category: "calculated_result",
     },
     {

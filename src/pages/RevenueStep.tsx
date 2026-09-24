@@ -50,7 +50,9 @@ export function RevenueStep() {
   return (
     <section aria-labelledby="revenue-heading">
       <h2 id="revenue-heading">Revenue</h2>
-      {streams.length === 0 && <p>No revenue streams yet — add at least one to build a projection.</p>}
+      {streams.length === 0 && (
+        <p>No revenue streams yet — add at least one to build a projection.</p>
+      )}
       {streams.map((stream, index) => (
         <fieldset key={stream.id}>
           <legend>Revenue stream {index + 1}</legend>
@@ -77,7 +79,9 @@ export function RevenueStep() {
           </select>
 
           <label htmlFor={`rs-starting-${stream.id}`}>
-            {stream.type === "transaction_commission" ? "Starting transaction volume" : "Starting customers/units"}
+            {stream.type === "transaction_commission"
+              ? "Starting transaction volume"
+              : "Starting customers/units"}
           </label>
           <input
             id={`rs-starting-${stream.id}`}

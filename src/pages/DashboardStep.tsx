@@ -5,6 +5,7 @@ import { DashboardMetrics } from "../components/DashboardMetrics";
 import { RevenueExpensesChart } from "../components/RevenueExpensesChart";
 import { ProfitabilityChart } from "../components/ProfitabilityChart";
 import { CashRunwayChart } from "../components/CashRunwayChart";
+import { Glossary } from "../components/Glossary";
 
 /** Assembles the investor-ready dashboard (FR-026-031). */
 export function DashboardStep() {
@@ -26,6 +27,7 @@ export function DashboardStep() {
   return (
     <section aria-labelledby="dashboard-heading">
       <h2 id="dashboard-heading">Dashboard</h2>
+      <Glossary />
       <DashboardMetrics metrics={metrics} currency={currency} />
       <RevenueExpensesChart
         rows={rows}

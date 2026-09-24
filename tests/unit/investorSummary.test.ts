@@ -46,7 +46,12 @@ describe("buildInvestorSummaryContent", () => {
     const flatProfile = canonicalBusinessProfile({ projectionPeriodMonths: 12 });
     const flatRows = computeMonthlyProjection(flatProfile, flatScenario);
     const flatBreakEven = computeBreakEven(flatRows, flatScenario);
-    const flatContent = buildInvestorSummaryContent(flatProfile, flatScenario, flatRows, flatBreakEven);
+    const flatContent = buildInvestorSummaryContent(
+      flatProfile,
+      flatScenario,
+      flatRows,
+      flatBreakEven,
+    );
 
     const operatingLine = flatContent.lines.find((l) => l.label === "Operating break-even");
     expect(operatingLine?.value).toBe("Not reached within the selected projection period");

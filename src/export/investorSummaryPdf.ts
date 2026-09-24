@@ -1,6 +1,14 @@
 import jsPDF from "jspdf";
-import type { BreakEvenResult, BusinessProfile, MonthlyProjectionRow, Scenario } from "../domain/types";
-import { buildInvestorSummaryContent, type InvestorSummaryCategory } from "./investorSummaryContent";
+import type {
+  BreakEvenResult,
+  BusinessProfile,
+  MonthlyProjectionRow,
+  Scenario,
+} from "../domain/types";
+import {
+  buildInvestorSummaryContent,
+  type InvestorSummaryCategory,
+} from "./investorSummaryContent";
 
 const CATEGORY_LABELS: Record<InvestorSummaryCategory, string> = {
   fact: "FACT",

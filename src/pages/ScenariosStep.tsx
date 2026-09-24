@@ -77,10 +77,7 @@ export function ScenariosStep() {
       </div>
 
       {state.businessProfile && state.scenarios.length > 1 && (
-        <ScenarioComparison
-          businessProfile={state.businessProfile}
-          scenarios={state.scenarios}
-        />
+        <ScenarioComparison businessProfile={state.businessProfile} scenarios={state.scenarios} />
       )}
     </section>
   );

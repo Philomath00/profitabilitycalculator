@@ -110,7 +110,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       setActiveScenarioId,
       hasUnsavedWork,
     }),
-    [state, activeScenario, hasUnsavedWork],
+    [state, activeScenario, hasUnsavedWork, updateActiveScenario],
   );
 
   return <AppStateContext.Provider value={value}>{children}</AppStateContext.Provider>;

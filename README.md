@@ -6,6 +6,37 @@ point, and generate clear, trustworthy financial projections they can show inves
 Built with Spec-Driven Development (SDD), scaffolded from
 [GitHub Spec Kit](https://github.com/github/spec-kit).
 
+## Running the app
+
+This is a client-only app (React + TypeScript + Vite) — no backend, no database, no accounts
+(see `specs/001-break-even-calculator/plan.md` for why). Requires Node.js 20 LTS.
+
+```bash
+npm install       # install dependencies
+npm run dev        # start the dev server
+npm run build       # type-check and build a static production bundle to dist/
+npm run preview      # serve the production build locally
+```
+
+## Testing
+
+```bash
+npm run test        # Vitest — calculation engine and component unit tests
+npm run test:watch    # Vitest in watch mode
+npm run test:e2e      # Playwright — critical end-to-end user journeys
+```
+
+Every financial formula is unit-tested against a hand-calculated reference case documented in
+`specs/001-break-even-calculator/quickstart.md` (constitution Principle X) — start there if a
+calculation looks wrong.
+
+## Linting and formatting
+
+```bash
+npm run lint        # ESLint
+npm run format       # Prettier check
+```
+
 ## Constitution
 
 The governing constitution for all work in this repo lives at

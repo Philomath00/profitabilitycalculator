@@ -25,7 +25,11 @@ export function RevenueExpensesChart({
   operatingBreakEvenMonth: number | null;
   currency: string;
 }) {
-  const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 });
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  });
 
   return (
     <figure aria-label="Revenue versus expenses over time">
@@ -35,9 +39,19 @@ export function RevenueExpensesChart({
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" label={{ value: "Month", position: "insideBottom", offset: -5 }} />
           <YAxis tickFormatter={(v: number) => formatter.format(v)} width={90} />
-          <Tooltip formatter={(value: number) => formatter.format(value)} labelFormatter={(m) => `Month ${m}`} />
+          <Tooltip
+            formatter={(value: number) => formatter.format(value)}
+            labelFormatter={(m) => `Month ${m}`}
+          />
           <Legend />
-          <Line type="monotone" dataKey="revenue" name="Revenue" stroke="#1b5e20" strokeWidth={2} dot={false} />
+          <Line
+            type="monotone"
+            dataKey="revenue"
+            name="Revenue"
+            stroke="#1b5e20"
+            strokeWidth={2}
+            dot={false}
+          />
           <Line
             type="monotone"
             dataKey="totalOperatingExpenses"

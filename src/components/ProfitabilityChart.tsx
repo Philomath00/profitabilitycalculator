@@ -1,9 +1,27 @@
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import type { MonthlyProjectionRow } from "../domain/types";
 
 /** FR-028: monthly profit/loss and progression toward profitability. */
-export function ProfitabilityChart({ rows, currency }: { rows: MonthlyProjectionRow[]; currency: string }) {
-  const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 });
+export function ProfitabilityChart({
+  rows,
+  currency,
+}: {
+  rows: MonthlyProjectionRow[];
+  currency: string;
+}) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  });
 
   return (
     <figure aria-label="Profitability over time">
@@ -13,7 +31,10 @@ export function ProfitabilityChart({ rows, currency }: { rows: MonthlyProjection
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" label={{ value: "Month", position: "insideBottom", offset: -5 }} />
           <YAxis tickFormatter={(v: number) => formatter.format(v)} width={90} />
-          <Tooltip formatter={(value: number) => formatter.format(value)} labelFormatter={(m) => `Month ${m}`} />
+          <Tooltip
+            formatter={(value: number) => formatter.format(value)}
+            labelFormatter={(m) => `Month ${m}`}
+          />
           <Line
             type="monotone"
             dataKey="operatingProfitLoss"

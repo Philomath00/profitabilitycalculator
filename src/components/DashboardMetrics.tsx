@@ -11,10 +11,16 @@ function formatMonth(month: number | null): string {
 /** FR-026: headline metrics — prioritizes decision-relevant information over every available metric. */
 export function DashboardMetrics({ metrics, currency }: { metrics: Metrics; currency: string }) {
   const tiles: { label: string; value: string }[] = [
-    { label: "Revenue (final projected month)", value: formatCurrency(metrics.latestRevenue, currency) },
+    {
+      label: "Revenue (final projected month)",
+      value: formatCurrency(metrics.latestRevenue, currency),
+    },
     {
       label: "Gross margin (final projected month)",
-      value: metrics.latestGrossMargin !== null ? `${(metrics.latestGrossMargin * 100).toFixed(1)}%` : "N/A",
+      value:
+        metrics.latestGrossMargin !== null
+          ? `${(metrics.latestGrossMargin * 100).toFixed(1)}%`
+          : "N/A",
     },
     {
       label: "Monthly burn (final projected month)",
@@ -25,19 +31,24 @@ export function DashboardMetrics({ metrics, currency }: { metrics: Metrics; curr
     },
     {
       label: "Runway",
-      value: metrics.runwayMonths !== null ? `Cash depleted by month ${metrics.runwayMonths}` : "Cash never depleted within projection",
+      value:
+        metrics.runwayMonths !== null
+          ? `Cash depleted by month ${metrics.runwayMonths}`
+          : "Cash never depleted within projection",
     },
     { label: "Operating break-even", value: formatMonth(metrics.operatingBreakEvenMonth) },
     { label: "Cumulative break-even", value: formatMonth(metrics.cumulativeBreakEvenMonth) },
     { label: "Funding requirement", value: formatCurrency(metrics.fundingRequirement, currency) },
     {
       label: "Projected profitability",
-      value: metrics.isProfitableAtEndOfProjection ? "Profitable by end of projection" : "Not yet profitable",
+      value: metrics.isProfitableAtEndOfProjection
+        ? "Profitable by end of projection"
+        : "Not yet profitable",
     },
   ];
 
   return (
-    <dl>
+    <dl aria-label="Headline metrics">
       {tiles.map((tile) => (
         <div key={tile.label}>
           <dt>{tile.label}</dt>

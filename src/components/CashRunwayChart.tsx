@@ -11,8 +11,18 @@ import {
 import type { MonthlyProjectionRow } from "../domain/types";
 
 /** FR-028: projected cash balance over time. */
-export function CashRunwayChart({ rows, currency }: { rows: MonthlyProjectionRow[]; currency: string }) {
-  const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 });
+export function CashRunwayChart({
+  rows,
+  currency,
+}: {
+  rows: MonthlyProjectionRow[];
+  currency: string;
+}) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  });
 
   return (
     <figure aria-label="Cash position over time">
@@ -22,7 +32,10 @@ export function CashRunwayChart({ rows, currency }: { rows: MonthlyProjectionRow
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" label={{ value: "Month", position: "insideBottom", offset: -5 }} />
           <YAxis tickFormatter={(v: number) => formatter.format(v)} width={90} />
-          <Tooltip formatter={(value: number) => formatter.format(value)} labelFormatter={(m) => `Month ${m}`} />
+          <Tooltip
+            formatter={(value: number) => formatter.format(value)}
+            labelFormatter={(m) => `Month ${m}`}
+          />
           <ReferenceLine y={0} stroke="#8b0000" strokeDasharray="4 4" label="Cash depleted" />
           <Area
             type="monotone"

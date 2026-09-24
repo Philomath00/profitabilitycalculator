@@ -28,7 +28,10 @@ export function validateInputs(
   const fundingSources = scenario.fundingSources ?? [];
 
   if (revenueStreams.length === 0) {
-    issues.push({ field: "scenario.revenueStreams", message: "At least one revenue stream is required." });
+    issues.push({
+      field: "scenario.revenueStreams",
+      message: "At least one revenue stream is required.",
+    });
   }
   revenueStreams.forEach((stream, index) => issues.push(...validateRevenueStream(stream, index)));
   costItems.forEach((item, index) => issues.push(...validateCostItem(item, index)));
@@ -55,7 +58,10 @@ function validateBusinessProfile(profile: Partial<BusinessProfile>): ValidationI
   if (!profile.name || profile.name.trim().length === 0) {
     issues.push({ field: "businessProfile.name", message: "Business name is required." });
   } else if (profile.name.length > 200) {
-    issues.push({ field: "businessProfile.name", message: "Business name must be 200 characters or fewer." });
+    issues.push({
+      field: "businessProfile.name",
+      message: "Business name must be 200 characters or fewer.",
+    });
   }
 
   if (!profile.currency || !ISO_CURRENCY.test(profile.currency)) {
@@ -75,7 +81,10 @@ function validateBusinessProfile(profile: Partial<BusinessProfile>): ValidationI
   if (profile.startingCash === undefined || profile.startingCash === null) {
     issues.push({ field: "businessProfile.startingCash", message: "Starting cash is required." });
   } else if (profile.startingCash < 0) {
-    issues.push({ field: "businessProfile.startingCash", message: "Starting cash cannot be negative." });
+    issues.push({
+      field: "businessProfile.startingCash",
+      message: "Starting cash cannot be negative.",
+    });
   }
 
   return issues;
@@ -89,7 +98,10 @@ function validateRevenueStream(stream: RevenueStream, index: number): Validation
     issues.push({ field: `${prefix}.name`, message: "Revenue stream name is required." });
   }
   if (stream.startingValue < 0) {
-    issues.push({ field: `${prefix}.startingValue`, message: "Starting value cannot be negative." });
+    issues.push({
+      field: `${prefix}.startingValue`,
+      message: "Starting value cannot be negative.",
+    });
   }
   if (stream.type !== "transaction_commission") {
     if (stream.pricePerUnit === null || stream.pricePerUnit === undefined) {
@@ -98,19 +110,22 @@ function validateRevenueStream(stream: RevenueStream, index: number): Validation
         message: "Price per unit is required for this revenue stream type.",
       });
     } else if (stream.pricePerUnit < 0) {
-      issues.push({ field: `${prefix}.pricePerUnit`, message: "Price per unit cannot be negative." });
+      issues.push({
+        field: `${prefix}.pricePerUnit`,
+        message: "Price per unit cannot be negative.",
+      });
     }
-  } else if (
-    stream.commissionRatePercent === null ||
-    stream.commissionRatePercent === undefined
-  ) {
+  } else if (stream.commissionRatePercent === null || stream.commissionRatePercent === undefined) {
     issues.push({
       field: `${prefix}.commissionRatePercent`,
       message: "Commission rate is required for a transaction/commission revenue stream.",
     });
   }
   if (stream.churnRatePercent < 0 || stream.churnRatePercent > 100) {
-    issues.push({ field: `${prefix}.churnRatePercent`, message: "Churn rate must be between 0 and 100." });
+    issues.push({
+      field: `${prefix}.churnRatePercent`,
+      message: "Churn rate must be between 0 and 100.",
+    });
   }
   if (
     stream.commissionRatePercent !== null &&
@@ -146,7 +161,10 @@ function validateCostItem(item: CostItem, index: number): ValidationIssue[] {
     issues.push({ field: `${prefix}.startMonth`, message: "Start month must be 1 or greater." });
   }
   if (item.endMonth !== null && item.endMonth !== undefined && item.endMonth < item.startMonth) {
-    issues.push({ field: `${prefix}.endMonth`, message: "End month cannot be before start month." });
+    issues.push({
+      field: `${prefix}.endMonth`,
+      message: "End month cannot be before start month.",
+    });
   }
 
   return issues;
@@ -160,7 +178,10 @@ function validateFundingSource(source: FundingSource, index: number): Validation
     issues.push({ field: `${prefix}.amount`, message: "Funding amount cannot be negative." });
   }
   if (source.receivedMonth < 1) {
-    issues.push({ field: `${prefix}.receivedMonth`, message: "Received month must be 1 or greater." });
+    issues.push({
+      field: `${prefix}.receivedMonth`,
+      message: "Received month must be 1 or greater.",
+    });
   }
 
   return issues;

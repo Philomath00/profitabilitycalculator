@@ -7,7 +7,9 @@ import type { BusinessProfile, Scenario } from "../../src/domain/types";
  * Modeled as one unit_sale-type revenue stream with startingValue=1 "unit" priced at
  * $10,000 so that revenue(m) = 10000 * 1.1^(m-1).
  */
-export function canonicalBusinessProfile(overrides: Partial<BusinessProfile> = {}): BusinessProfile {
+export function canonicalBusinessProfile(
+  overrides: Partial<BusinessProfile> = {},
+): BusinessProfile {
   return {
     id: "bp-1",
     name: "Canonical Test Co",

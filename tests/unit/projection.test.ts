@@ -86,7 +86,10 @@ describe("computeMonthlyProjection (canonical reference case, quickstart.md)", (
 
   it("annual totals derive from (sum of) the monthly rows, never computed independently", () => {
     const yearOneRevenue = rows.slice(0, 12).reduce((sum, r) => sum + r.revenue, 0);
-    const manualSum = rows.slice(0, 12).map((r) => r.revenue).reduce((a, b) => a + b, 0);
+    const manualSum = rows
+      .slice(0, 12)
+      .map((r) => r.revenue)
+      .reduce((a, b) => a + b, 0);
     expect(yearOneRevenue).toBeCloseTo(manualSum, 6);
   });
 });

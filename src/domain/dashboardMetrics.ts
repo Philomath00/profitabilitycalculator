@@ -34,7 +34,8 @@ export function computeDashboardMetrics(
     runwayMonths: firstNegativeCash ? firstNegativeCash.month : null,
     operatingBreakEvenMonth: breakEven.operatingBreakEvenMonth,
     cumulativeBreakEvenMonth: breakEven.cumulativeBreakEvenMonth,
-    fundingRequirement: lowestCashRow && lowestCashRow.cashBalance < 0 ? -lowestCashRow.cashBalance : 0,
+    fundingRequirement:
+      lowestCashRow && lowestCashRow.cashBalance < 0 ? -lowestCashRow.cashBalance : 0,
     isProfitableAtEndOfProjection: (lastRow?.operatingProfitLoss ?? 0) >= 0,
   };
 }

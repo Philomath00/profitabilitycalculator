@@ -71,7 +71,8 @@ export function ExpensesStep() {
               const category = e.target.value as CostCategory;
               updateItem(item.id, {
                 category,
-                variableBasis: category === "variable" ? (item.variableBasis ?? "percent_of_revenue") : null,
+                variableBasis:
+                  category === "variable" ? (item.variableBasis ?? "percent_of_revenue") : null,
               });
             }}
           >
@@ -88,7 +89,9 @@ export function ExpensesStep() {
               <select
                 id={`ci-basis-${item.id}`}
                 value={item.variableBasis ?? "percent_of_revenue"}
-                onChange={(e) => updateItem(item.id, { variableBasis: e.target.value as VariableBasis })}
+                onChange={(e) =>
+                  updateItem(item.id, { variableBasis: e.target.value as VariableBasis })
+                }
               >
                 <option value="percent_of_revenue">% of revenue</option>
                 <option value="per_unit">Per unit sold</option>
@@ -121,14 +124,18 @@ export function ExpensesStep() {
 
           {item.category !== "one_time_startup" && (
             <>
-              <label htmlFor={`ci-end-${item.id}`}>End month (blank = continues through projection end)</label>
+              <label htmlFor={`ci-end-${item.id}`}>
+                End month (blank = continues through projection end)
+              </label>
               <input
                 id={`ci-end-${item.id}`}
                 type="number"
                 min={item.startMonth}
                 value={item.endMonth ?? ""}
                 onChange={(e) =>
-                  updateItem(item.id, { endMonth: e.target.value === "" ? null : Number(e.target.value) })
+                  updateItem(item.id, {
+                    endMonth: e.target.value === "" ? null : Number(e.target.value),
+                  })
                 }
               />
             </>

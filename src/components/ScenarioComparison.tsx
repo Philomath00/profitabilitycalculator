@@ -33,7 +33,11 @@ export function ScenarioComparison({
   scenarios: Scenario[];
 }) {
   const currency = businessProfile.currency;
-  const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 });
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  });
 
   const computed = scenarios.map((scenario) => {
     const rows = computeMonthlyProjection(businessProfile, scenario);
@@ -80,7 +84,11 @@ export function ScenarioComparison({
               <td>{formatter.format(metrics.latestRevenue)}</td>
               <td>{formatMonth(metrics.operatingBreakEvenMonth)}</td>
               <td>{formatMonth(metrics.cumulativeBreakEvenMonth)}</td>
-              <td>{metrics.runwayMonths !== null ? `Depleted month ${metrics.runwayMonths}` : "Never depleted"}</td>
+              <td>
+                {metrics.runwayMonths !== null
+                  ? `Depleted month ${metrics.runwayMonths}`
+                  : "Never depleted"}
+              </td>
               <td>{formatter.format(metrics.fundingRequirement)}</td>
             </tr>
           ))}
@@ -92,9 +100,15 @@ export function ScenarioComparison({
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData} margin={{ top: 10, right: 20, left: 10, bottom: 10 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" label={{ value: "Month", position: "insideBottom", offset: -5 }} />
+            <XAxis
+              dataKey="month"
+              label={{ value: "Month", position: "insideBottom", offset: -5 }}
+            />
             <YAxis tickFormatter={(v: number) => formatter.format(v)} width={90} />
-            <Tooltip formatter={(value: number) => formatter.format(value)} labelFormatter={(m) => `Month ${m}`} />
+            <Tooltip
+              formatter={(value: number) => formatter.format(value)}
+              labelFormatter={(m) => `Month ${m}`}
+            />
             <Legend />
             {computed.map(({ scenario }, index) => (
               <Line

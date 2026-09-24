@@ -1,6 +1,9 @@
 import { useAppState } from "../state/AppStateContext";
 import { useProjection } from "../state/useProjection";
-import { buildInvestorSummaryContent, type InvestorSummaryCategory } from "../export/investorSummaryContent";
+import {
+  buildInvestorSummaryContent,
+  type InvestorSummaryCategory,
+} from "../export/investorSummaryContent";
 import { generateInvestorSummaryDocument } from "../export/investorSummaryPdf";
 
 const CATEGORY_LABELS: Record<InvestorSummaryCategory, string> = {
@@ -19,7 +22,9 @@ export function InvestorSummaryStep() {
     return (
       <section aria-labelledby="investor-summary-heading">
         <h2 id="investor-summary-heading">Investor View</h2>
-        <p>Complete the Business, Revenue, and Expenses steps first to generate an investor summary.</p>
+        <p>
+          Complete the Business, Revenue, and Expenses steps first to generate an investor summary.
+        </p>
       </section>
     );
   }

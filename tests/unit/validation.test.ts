@@ -51,13 +51,17 @@ describe("validateInputs", () => {
   });
 
   it("rejects an invalid projection period", () => {
-    // @ts-expect-error intentionally invalid for the test
-    const issues = validateInputs(canonicalBusinessProfile({ projectionPeriodMonths: 18 }), canonicalScenario());
+    // @ts-expect-error 18 is intentionally not one of the valid periods, for this test
+    const invalidProfile = canonicalBusinessProfile({ projectionPeriodMonths: 18 });
+    const issues = validateInputs(invalidProfile, canonicalScenario());
     expect(issues.some((i) => i.field === "businessProfile.projectionPeriodMonths")).toBe(true);
   });
 
   it("rejects negative starting cash", () => {
-    const issues = validateInputs(canonicalBusinessProfile({ startingCash: -1 }), canonicalScenario());
+    const issues = validateInputs(
+      canonicalBusinessProfile({ startingCash: -1 }),
+      canonicalScenario(),
+    );
     expect(issues.some((i) => i.field === "businessProfile.startingCash")).toBe(true);
   });
 

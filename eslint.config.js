@@ -24,6 +24,10 @@ export default [
       ...tseslint.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      // TypeScript (via `tsc -b --noEmit`, run separately) already catches genuine
+      // undefined identifiers; no-undef's static analysis doesn't understand ambient
+      // DOM/TS globals (crypto, File, JSX, ...) and produces false positives on them.
+      "no-undef": "off",
     },
   },
 ];

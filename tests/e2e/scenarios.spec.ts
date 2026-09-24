@@ -14,7 +14,11 @@ test("founder creates and compares three scenarios", async ({ page }) => {
   await page.getByRole("button", { name: "Next" }).click();
 
   await page.getByRole("button", { name: "Add cost item" }).click();
-  await page.locator("fieldset").filter({ hasText: "Cost item 1" }).getByLabel("Amount (currency)").fill("20000");
+  await page
+    .locator("fieldset")
+    .filter({ hasText: "Cost item 1" })
+    .getByLabel("Amount (currency)")
+    .fill("20000");
   await page.getByRole("button", { name: "Add cost item" }).click();
   const variableFieldset = page.locator("fieldset").filter({ hasText: "Cost item 2" });
   await variableFieldset.getByLabel("Category").selectOption("variable");

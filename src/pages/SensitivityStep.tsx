@@ -59,7 +59,9 @@ export function SensitivityStep() {
       .map((v) => Number(v.trim()))
       .filter((v) => !Number.isNaN(v));
     if (!selectedPath || candidateValues.length === 0 || !state.businessProfile) return;
-    setResults(computeSensitivity(state.businessProfile, activeScenario, selectedPath, candidateValues));
+    setResults(
+      computeSensitivity(state.businessProfile, activeScenario, selectedPath, candidateValues),
+    );
   }
 
   return (
@@ -111,7 +113,11 @@ export function SensitivityStep() {
                 <tr key={result.value}>
                   <th scope="row">{result.value}</th>
                   <td>{formatMonth(result.breakEven.operatingBreakEvenMonth)}</td>
-                  <td>{metrics.runwayMonths !== null ? `Depleted month ${metrics.runwayMonths}` : "Never depleted"}</td>
+                  <td>
+                    {metrics.runwayMonths !== null
+                      ? `Depleted month ${metrics.runwayMonths}`
+                      : "Never depleted"}
+                  </td>
                   <td>
                     {new Intl.NumberFormat("en-US", {
                       style: "currency",
