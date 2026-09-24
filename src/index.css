@@ -1,0 +1,133 @@
+/* Baseline styling for accessibility (FR-041, constitution Principle XV) and
+   responsive/mobile layout (constitution Principle XVI). Deliberately minimal —
+   this is a functional MVP, not a design system. */
+
+:root {
+  color-scheme: light;
+  --color-text: #1a1a1a;
+  --color-bg: #ffffff;
+  --color-border: #6b6b6b;
+  --color-focus: #0b5fff;
+  --color-error: #b3261e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+}
+
+/* Visible focus state for every interactive element (keyboard navigation, FR-041). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+button {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+label {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+fieldset {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+th,
+td {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+[role="alert"] {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+nav[aria-label="Guided flow steps"] ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+/* Small screens: stack the step nav and keep tap targets full-width. */
+@media (max-width: 600px) {
+  nav[aria-label="Guided flow steps"] ol {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}

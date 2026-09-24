@@ -16,3 +16,17 @@ node_modules/
 __pycache__/
 *.pyc
 .venv/
+
+# Node.js / TypeScript / Vite build output (break-even-calculator feature)
+dist/
+build/
+*.log
+npm-debug.log*
+coverage/
+*.tsbuildinfo
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
