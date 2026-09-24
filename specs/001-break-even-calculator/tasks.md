@@ -181,28 +181,28 @@ direction, and that the comparison view displays all three accurately.
 
 ### Tests for User Story 3 ⚠️ Write first; confirm they FAIL before implementing T037–T041
 
-- [ ] T035 [P] [US3] Unit test: duplicating a base scenario with a lower growth rate produces
+- [x] T035 [P] [US3] Unit test: duplicating a base scenario with a lower growth rate produces
       an operating break-even month at or later than the base case's, in
       `tests/unit/scenario.test.ts`
-- [ ] T036 [US3] Playwright E2E test: create three named scenarios and verify the comparison
+- [x] T036 [US3] Playwright E2E test: create three named scenarios and verify the comparison
       view shows revenue/expenses/profitability/break-even/runway/cash requirements for all
       three in `tests/e2e/scenarios.spec.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T037 [US3] Implement scenario duplication in `src/domain/scenario.ts` — a full copy of
+- [x] T037 [US3] Implement scenario duplication in `src/domain/scenario.ts` — a full copy of
       `revenueStreams`/`costItems`/`fundingSources`, not a diff/override, per data-model.md
       (depends on T007)
-- [ ] T038 [P] [US3] Build the Scenario management UI (create/name/duplicate/delete,
+- [x] T038 [P] [US3] Build the Scenario management UI (create/name/duplicate/delete,
       `isBaseCase` toggle) in `src/pages/ScenariosStep.tsx` per FR-023
-- [ ] T039 [US3] Build the Scenario Comparison view in
+- [x] T039 [US3] Build the Scenario Comparison view in
       `src/components/ScenarioComparison.tsx` showing revenue/expenses/profitability/
       break-even month/runway/cash requirements per scenario per FR-024 (depends on T016,
       T017, T037)
-- [ ] T040 [US3] Surface each scenario's underlying assumption differences (not an opaque
+- [x] T040 [US3] Surface each scenario's underlying assumption differences (not an opaque
       system-assigned label) in the comparison view per FR-023 acceptance scenario 3
       (depends on T039)
-- [ ] T041 [US3] Add a scenario-overlay mode to the dashboard charts (T029–T031) showing
+- [x] T041 [US3] Add a scenario-overlay mode to the dashboard charts (T029–T031) showing
       differences between scenarios per FR-029
 
 **Checkpoint**: User Stories 1–3 all independently functional.
