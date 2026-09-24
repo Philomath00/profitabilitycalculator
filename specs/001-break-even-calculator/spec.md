@@ -23,6 +23,9 @@ Correctness and Investor Trust.)
   session) enough for this feature? → A: No logins; founders can download the analysis to
   retain or share it. This also resolves the investor-delivery-mechanism question: the Investor
   Summary is shared as a downloadable export, not an authenticated link or in-app-only view.
+- Q: Should profit, gross margin, and break-even be calculated on a pre-tax/operating basis
+  only, or does the model need to account for estimated taxes? → A: Pre-tax/operating basis
+  only; taxes are explicitly out of scope for this feature.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -281,6 +284,10 @@ requirements matches the direction and relative magnitude implied by the underly
   definition of every calculated metric it presents (e.g. gross margin, burn rate, runway,
   contribution margin, operating profit, cumulative profitability) and apply each definition
   consistently throughout the product.
+- **FR-047**: All profit, margin, and break-even calculations in this feature MUST be computed
+  on a pre-tax/operating basis; estimated or actual taxes MUST NOT be modeled or subtracted in
+  this feature. Any product surface presenting these figures (dashboard, scenarios, investor
+  summary) MUST label them consistently as pre-tax/operating figures.
 
 ### Functional Requirements — Break-Even Analysis
 
@@ -472,10 +479,3 @@ requirements matches the direction and relative magnitude implied by the underly
   cap-table management, investor CRM, fundraising marketplace features, AI-generated investment
   recommendations, and automatic business valuations are out of scope for this feature and are
   noted as potential future capabilities, not silently included.
-
-### Open Questions Requiring Clarification
-
-- **FR-047**: Profit, gross margin, and break-even calculations in this feature are computed on
-  a [NEEDS CLARIFICATION: pre-tax/operating basis only, or does the model need to account for
-  estimated taxes] basis? This affects the precise definition of "profit" and "break-even" that
-  constitution Principle X requires to be documented and applied consistently.
