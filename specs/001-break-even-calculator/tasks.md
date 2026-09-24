@@ -318,6 +318,10 @@ underlying formulas.
       snapshot) across the guided-flow steps and fix any violations found, to substantiate
       FR-041/constitution Principle XV compliance beyond manual construction per FR-041
       (partial)
+- [ ] T066 Fix the break-even `ReferenceLine` label in
+      `src/components/RevenueExpensesChart.tsx` overlapping the chart's `<figcaption>` (visible
+      in a live end-to-end run's dashboard screenshot — the "Break-even: month N" label renders
+      on top of the "Revenue vs. Expenses" caption text above it) per FR-030 (partial)
 
 ---
 
