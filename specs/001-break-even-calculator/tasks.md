@@ -26,16 +26,16 @@ implemented, tested, and demoed independently.
 
 **Purpose**: Project initialization per plan.md / research.md decisions.
 
-- [ ] T001 Create project directory structure per plan.md Project Structure
+- [x] T001 Create project directory structure per plan.md Project Structure
       (`src/domain/`, `src/components/`, `src/pages/`, `src/export/`, `src/state/`,
       `tests/unit/`, `tests/component/`, `tests/e2e/`)
-- [ ] T002 Initialize TypeScript 5.x + React 18 + Vite project (`package.json`,
+- [x] T002 Initialize TypeScript 5.x + React 18 + Vite project (`package.json`,
       `tsconfig.json`, `vite.config.ts`) per research.md §2–3
-- [ ] T003 [P] Configure Vitest (`vitest.config.ts`) per research.md §7
-- [ ] T004 [P] Configure Playwright (`playwright.config.ts`) per constitution Principle IX
+- [x] T003 [P] Configure Vitest (`vitest.config.ts`) per research.md §7
+- [x] T004 [P] Configure Playwright (`playwright.config.ts`) per constitution Principle IX
       and research.md §7
-- [ ] T005 [P] Configure ESLint + Prettier for linting/formatting
-- [ ] T006 [P] Add Recharts and a client-side PDF generation library as dependencies per
+- [x] T005 [P] Configure ESLint + Prettier for linting/formatting
+- [x] T006 [P] Add Recharts and a client-side PDF generation library as dependencies per
       research.md §5–6
 
 ---
@@ -46,19 +46,19 @@ implemented, tested, and demoed independently.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T007 Define `BusinessProfile`, `RevenueStream`, `CostItem`, `FundingSource`, `Scenario`
+- [x] T007 Define `BusinessProfile`, `RevenueStream`, `CostItem`, `FundingSource`, `Scenario`
       TypeScript types in `src/domain/types.ts` per data-model.md, quoting constraints
       verbatim: `name` required 1–200 chars; `currency` ISO 4217; `projectionPeriodMonths` ∈
       {12, 24, 36, 60}; `startingCash` ≥ 0; `churnRatePercent`/`commissionRatePercent` ∈
       [0, 100]; `category` ∈ {fixed, variable, one_time_startup, growth, custom};
       `variableBasis` required when `category = variable`
-- [ ] T008 [P] Implement `validateInputs()` in `src/domain/validation.ts` per
+- [x] T008 [P] Implement `validateInputs()` in `src/domain/validation.ts` per
       contracts/calculation-engine.md and data-model.md validation rules (FR-035–037)
-- [ ] T009 [P] Implement in-memory `AppStateContext` (React Context, no persistence per
+- [x] T009 [P] Implement in-memory `AppStateContext` (React Context, no persistence per
       FR-045) in `src/state/AppStateContext.tsx`
-- [ ] T010 [P] Implement the unsaved-changes warning required by FR-048 in
+- [x] T010 [P] Implement the unsaved-changes warning required by FR-048 in
       `src/state/unsavedChangesGuard.ts`
-- [ ] T011 [P] Build the guided-flow step scaffold/router (Business → Revenue → Expenses →
+- [x] T011 [P] Build the guided-flow step scaffold/router (Business → Revenue → Expenses →
       Funding → Growth → Projection → Break-Even → Scenarios → Investor View, FR-043) in
       `src/pages/GuidedFlow.tsx`
 
@@ -78,51 +78,51 @@ no dashboard, scenario, or export functionality required.
 
 ### Tests for User Story 1 ⚠️ Write first; confirm they FAIL before implementing T016–T025
 
-- [ ] T012 [P] [US1] Unit tests for `computeMonthlyProjection()` against the quickstart.md
+- [x] T012 [P] [US1] Unit tests for `computeMonthlyProjection()` against the quickstart.md
       canonical reference case (revenue and operating profit/loss at months 1, 5, 10, 11, 17,
       18) in `tests/unit/projection.test.ts`
-- [ ] T013 [P] [US1] Unit tests for `computeBreakEven()` covering three quickstart.md
+- [x] T013 [P] [US1] Unit tests for `computeBreakEven()` covering three quickstart.md
       reference cases: the canonical case (operating break-even = month 11, cumulative
       break-even = month 18), the never-reaches-break-even case (both `null`), and the
       zero-contribution-margin case (`breakEvenUnits` `null`) in `tests/unit/breakEven.test.ts`
-- [ ] T014 [P] [US1] Unit tests for `validateInputs()` rejecting negative price, out-of-range
+- [x] T014 [P] [US1] Unit tests for `validateInputs()` rejecting negative price, out-of-range
       percentages, malformed numbers, and missing required fields (FR-035–036) in
       `tests/unit/validation.test.ts`
-- [ ] T015 [US1] Playwright E2E test: founder completes the Business → Revenue → Expenses →
+- [x] T015 [US1] Playwright E2E test: founder completes the Business → Revenue → Expenses →
       Funding steps with the canonical reference case and sees operating break-even month 11
       and cumulative break-even month 18 in `tests/e2e/coreModel.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T016 [US1] Implement `computeMonthlyProjection()` in `src/domain/projection.ts` per
+- [x] T016 [US1] Implement `computeMonthlyProjection()` in `src/domain/projection.ts` per
       contracts/calculation-engine.md (exactly `projectionPeriodMonths` rows; no `NaN`/
       `Infinity`; `grossMargin` is `null` when revenue = 0) (depends on T007, T012)
-- [ ] T017 [US1] Implement `computeBreakEven()` in `src/domain/breakEven.ts` per
+- [x] T017 [US1] Implement `computeBreakEven()` in `src/domain/breakEven.ts` per
       contracts/calculation-engine.md (`operatingBreakEvenMonth`/`cumulativeBreakEvenMonth`
       `null` when not reached; `breakEvenUnits` `null` when contribution margin ≤ 0)
       (depends on T016, T013)
-- [ ] T018 [P] [US1] Build the Business Setup step in `src/pages/BusinessSetupStep.tsx`
+- [x] T018 [P] [US1] Build the Business Setup step in `src/pages/BusinessSetupStep.tsx`
       (`name` required 1–200 chars, `businessModelType` enum, `currency` ISO 4217,
       `projectionStartDate`, `projectionPeriodMonths` ∈ {12, 24, 36, 60}, `startingCash` ≥ 0)
       per FR-001–003
-- [ ] T019 [P] [US1] Build the Revenue Stream step in `src/pages/RevenueStep.tsx` supporting
+- [x] T019 [P] [US1] Build the Revenue Stream step in `src/pages/RevenueStep.tsx` supporting
       multiple streams, the `type` enum, `growthRatePercentPerMonth` (may be negative),
       `churnRatePercent`/`commissionRatePercent` ∈ [0, 100] per FR-004–007
-- [ ] T020 [P] [US1] Build the Cost Item step in `src/pages/ExpensesStep.tsx` supporting
+- [x] T020 [P] [US1] Build the Cost Item step in `src/pages/ExpensesStep.tsx` supporting
       fixed/variable/one_time_startup/growth/custom categories, `variableBasis`,
       `startMonth`/`endMonth` per FR-008–010
-- [ ] T021 [P] [US1] Build the Funding step in `src/pages/FundingStep.tsx` for
+- [x] T021 [P] [US1] Build the Funding step in `src/pages/FundingStep.tsx` for
       founder_capital/investment/grant/loan/other with `receivedMonth` per FR-011–012
-- [ ] T022 [US1] Build the Monthly Projection table in `src/components/ProjectionTable.tsx`
+- [x] T022 [US1] Build the Monthly Projection table in `src/components/ProjectionTable.tsx`
       (revenue, expenses, profit/loss, cash balance, cumulative profit/loss per month) per
       FR-021 (depends on T016)
-- [ ] T023 [US1] Build the Break-Even summary display in
+- [x] T023 [US1] Build the Break-Even summary display in
       `src/components/BreakEvenSummary.tsx`, distinguishing operating vs. cumulative
       break-even and stating "Break-even is not reached within the selected projection
       period" when `null` per FR-018–019 (depends on T017)
-- [ ] T024 [US1] Wire `validateInputs()` error messages into the Business/Revenue/Expenses/
+- [x] T024 [US1] Wire `validateInputs()` error messages into the Business/Revenue/Expenses/
       Funding steps per FR-035 (depends on T008, T018–T021)
-- [ ] T025 [US1] Wire `AppStateContext` so any assumption change triggers recalculation of
+- [x] T025 [US1] Wire `AppStateContext` so any assumption change triggers recalculation of
       the projection and break-even result within 1 second per SC-005/FR-034 (depends on
       T009, T016, T017)
 
