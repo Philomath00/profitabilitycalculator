@@ -14,6 +14,16 @@ and other stakeholders." (Full 29-section product brief supplied by the user; su
 structured below per the project constitution, in particular Principle X, Financial Calculation
 Correctness and Investor Trust.)
 
+## Clarifications
+
+### Session 2026-09-24
+
+- Q: Does this feature require user accounts with login, so a founder's model is saved and
+  retrievable across visits, or is a single working session (no login, data held only for that
+  session) enough for this feature? → A: No logins; founders can download the analysis to
+  retain or share it. This also resolves the investor-delivery-mechanism question: the Investor
+  Summary is shared as a downloadable export, not an authenticated link or in-app-only view.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Build a Break-Even & Profitability Model (Priority: P1)
@@ -208,6 +218,9 @@ requirements matches the direction and relative magnitude implied by the underly
   (Assumptions) rather than drifting.
 - What happens when a founder deletes or edits a cost/revenue item that existing scenarios
   depend on?
+- What happens when a founder closes the browser tab, navigates away, or the session otherwise
+  ends before they have downloaded their analysis? Since no account/login persists the model
+  server-side, work-in-progress must not be silently lost without warning.
 
 ## Requirements *(mandatory)*
 
@@ -344,6 +357,18 @@ requirements matches the direction and relative magnitude implied by the underly
 - **FR-037**: System MUST apply consistent, documented currency precision/rounding rules and
   MUST NOT allow silent rounding drift to change a break-even or profitability determination.
 
+### Functional Requirements — Data Persistence & Export
+
+- **FR-045**: System MUST NOT require a user account or login to create, edit, or view a
+  financial model; all modeling functionality MUST be usable entirely within the founder's
+  current working session.
+- **FR-046**: System MUST allow a founder to download their analysis — at minimum the Investor
+  Summary — as an exportable file, so it can be retained or shared with investors outside the
+  application without the founder or the recipient needing an account or login.
+- **FR-048**: System MUST warn the founder before any action within its control that would
+  discard unsaved, undownloaded model data (e.g., closing or resetting the working session),
+  giving the founder the opportunity to download first.
+
 ### Functional Requirements — Privacy & Security
 
 - **FR-038**: System MUST apply data minimization: it MUST NOT collect personal or business
@@ -394,7 +419,8 @@ requirements matches the direction and relative magnitude implied by the underly
 - **Break-Even Result**: The derived determination of operating break-even and cumulative
   break-even (a period, or an explicit "not reached within period" state) for a given Scenario.
 - **Investor Summary**: A derived, presentation-oriented view of a Scenario's model that
-  separates facts, assumptions, calculated results, and projections for an external audience.
+  separates facts, assumptions, calculated results, and projections for an external audience,
+  and can be downloaded as an exportable file (see FR-046).
 
 ## Success Criteria *(mandatory)*
 
@@ -439,8 +465,9 @@ requirements matches the direction and relative magnitude implied by the underly
   calculations retain full precision internally to avoid cumulative rounding drift across long
   (up to 60-month) projections.
 - This feature covers a single-founder-authored model at a time; concurrent, simultaneous
-  multi-editor collaboration on the same model is not required for this feature (see
-  clarification on persistence/accounts below for how the model is saved and who can view it).
+  multi-editor collaboration on the same model is not required for this feature. No user
+  accounts or login exist in this feature — a model lives only in the founder's working session
+  and must be downloaded to be retained or shared (see Clarifications).
 - Full accounting, bookkeeping, bank synchronization, tax filing, payroll processing, invoicing,
   cap-table management, investor CRM, fundraising marketplace features, AI-generated investment
   recommendations, and automatic business valuations are out of scope for this feature and are
@@ -448,16 +475,6 @@ requirements matches the direction and relative magnitude implied by the underly
 
 ### Open Questions Requiring Clarification
 
-- **FR-045**: System MUST persist a founder's model as [NEEDS CLARIFICATION: does this feature
-  require user accounts/login with persisted, retrievable projects, or is a single working
-  session (data held only for the current session/browser, no login) sufficient for this
-  feature]? This materially changes the security threat model (authentication, authorization,
-  cross-user data isolation) and the scope of this feature.
-- **FR-046**: System MUST make the Investor Summary available to investors via [NEEDS
-  CLARIFICATION: is investor access delivered as an authenticated, revocable read-only link; a
-  downloadable/exportable document; or an in-app view only intended to be presented live by the
-  founder (no external sharing) for this feature]? This directly affects the security
-  requirements already flagged against accidental public exposure of financial data (FR-039).
 - **FR-047**: Profit, gross margin, and break-even calculations in this feature are computed on
   a [NEEDS CLARIFICATION: pre-tax/operating basis only, or does the model need to account for
   estimated taxes] basis? This affects the precise definition of "profit" and "break-even" that
