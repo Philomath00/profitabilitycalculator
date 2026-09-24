@@ -1,0 +1,18 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Dependency directories (added here proactively; per-language ignores can
+# be layered in as projects are added under this constitution)
+node_modules/
+__pycache__/
+*.pyc
+.venv/
