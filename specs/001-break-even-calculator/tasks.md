@@ -141,30 +141,30 @@ point is visually identifiable on the relevant chart(s).
 
 ### Tests for User Story 2 ⚠️ Write first; confirm they FAIL before implementing T028–T034
 
-- [ ] T026 [P] [US2] Unit tests verifying dashboard headline-metric values equal
+- [x] T026 [P] [US2] Unit tests verifying dashboard headline-metric values equal
       `computeMonthlyProjection()`/`computeBreakEven()` outputs for the canonical case in
       `tests/unit/dashboardMetrics.test.ts`
-- [ ] T027 [US2] Playwright E2E test: the dashboard shows correct headline metrics and
+- [x] T027 [US2] Playwright E2E test: the dashboard shows correct headline metrics and
       break-even is visually marked on the revenue-vs-expenses chart at month 11 for the
       canonical case in `tests/e2e/dashboard.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T028 [P] [US2] Build the Dashboard headline metrics component in
+- [x] T028 [P] [US2] Build the Dashboard headline metrics component in
       `src/components/DashboardMetrics.tsx` (revenue, gross margin, monthly burn, runway,
       break-even month, funding requirement, projected profitability) per FR-026
-- [ ] T029 [P] [US2] Build the Revenue-vs-Expenses chart in
+- [x] T029 [P] [US2] Build the Revenue-vs-Expenses chart in
       `src/components/RevenueExpensesChart.tsx` (Recharts, break-even point marked,
       non-color-only encoding) per FR-027, FR-030–031
-- [ ] T030 [P] [US2] Build the Profitability-over-time chart in
+- [x] T030 [P] [US2] Build the Profitability-over-time chart in
       `src/components/ProfitabilityChart.tsx` per FR-028
-- [ ] T031 [P] [US2] Build the Cash Position/Runway chart in
+- [x] T031 [P] [US2] Build the Cash Position/Runway chart in
       `src/components/CashRunwayChart.tsx` per FR-028
-- [ ] T032 [US2] Add a numerical/tabular fallback for each chart per FR-042 (depends on
+- [x] T032 [US2] Add a numerical/tabular fallback for each chart per FR-042 (depends on
       T029–T031)
-- [ ] T033 [US2] Add explicit "break-even not reached" messaging to the dashboard when the
+- [x] T033 [US2] Add explicit "break-even not reached" messaging to the dashboard when the
       break-even result is `null` per FR-019/FR-030 (depends on T028)
-- [ ] T034 [US2] Assemble the Dashboard page in `src/pages/DashboardStep.tsx`, integrating
+- [x] T034 [US2] Assemble the Dashboard page in `src/pages/DashboardStep.tsx`, integrating
       T028–T033
 
 **Checkpoint**: User Stories 1 AND 2 both work independently.
